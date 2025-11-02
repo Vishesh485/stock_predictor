@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'standalone',
   reactStrictMode: true,
   // If you need to use environment variables
   env: {
