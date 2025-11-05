@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
 
-from app.routes import stock, predict
+from app.routes import stock, predict, auth
 
 load_dotenv()
 
@@ -16,13 +16,14 @@ app = FastAPI(
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # Allow all origins, or specify your frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # Include routers
+app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
 app.include_router(stock.router, prefix="/api/stock", tags=["Stock Data"])
 app.include_router(predict.router, prefix="/api/predict", tags=["Predictions"])
 

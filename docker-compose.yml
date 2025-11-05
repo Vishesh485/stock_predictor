@@ -9,7 +9,10 @@ services:
       - "8000:8000"
     environment:
       - DATABASE_URL=${DATABASE_URL}
+      - JWT_SECRET=${JWT_SECRET}
       - MODEL_PATH=/app/ml_model/saved_models/lstm_model.h5
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
     volumes:
       - ./backend:/app
       - ./ml_model:/app/ml_model
